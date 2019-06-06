@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Index Page</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <style media="screen">
+            * {
+                margin: 0px auto;
+                <!-- outline: 1px solid black; -->
+            }
+            .main {
+                height: 800px;
+                width: 800px;
+                border: 5px solid black;
+            }
+            .inner {
+                height: 100px;
+                width: 100px;
+                background-color: {{color}};
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Welcome {{name}}!</h1>
+        <div class="main">
+
+            {% for i in range(num) %}
+                <div class="inner"></div>
+            {% endfor %}
+
+        </div>
+    </body>
+</html>
