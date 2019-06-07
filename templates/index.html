@@ -4,32 +4,40 @@
         <meta charset="utf-8">
         <title>Index Page</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-        <style media="screen">
-            * {
-                margin: 0px auto;
-                <!-- outline: 1px solid black; -->
-            }
-            .main {
-                height: 800px;
-                width: 800px;
-                border: 5px solid black;
-            }
-            .inner {
-                height: 100px;
-                width: 100px;
-                background-color: {{color}};
-                display: inline-block;
-            }
-        </style>
+
     </head>
     <body>
-        <h1>Welcome {{name}}!</h1>
-        <div class="main">
+        <h1>Welcome {{session.name}}</h1>
 
-            {% for i in range(num) %}
-                <div class="inner"></div>
-            {% endfor %}
+        <form action="/process" method="post">
+            Your Name: <input type="text" name="name" placeholder="Your name:"><br>
+            Your Email: <input type="text" name="email" placeholder="Your email:"><br>
+            <input type="hidden" name="type" value="register">
+            <input type="submit" value="Sign Up!">
+        </form>
 
-        </div>
+        <table>
+    <tr>
+        <td>Product</td>
+        <td>Price</td>
+        <td>Action</td>
+    </tr>
+    <tr>
+        <td>Dojo t-shirt</td>
+        <td>$15.99</td>
+        <td><a href="/buy/1">Buy</a></td>
+    </tr>
+    <tr>
+        <td>Dojo Hat</td>
+        <td>$11.99</td>
+        <td><a href="/buy/2">Buy</a></td>
+    </tr>
+    <tr>
+        <td>Dojo Algorithm Book</td>
+        <td>$34.99</td>
+        <td><a href="/buy/3">Buy</a></td>
+    </tr>
+</table>
+
     </body>
 </html>

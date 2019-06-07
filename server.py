@@ -1,26 +1,33 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, session
+
 
 app = Flask(__name__)
+app.secret_key = "aksjdhkjashdkjashdkjw"
 
-num = 1
-colour = "yellow"
-name = "Nina"
 
 @app.route("/")
 def index():
-    return render_template("index.html", num=num, color=colour, name=name)
+    # session['name'] = "Abby"
+    return render_template("index.html")
+
+@app.route("/process", methods=["POST"])
+def process():
+    print(request.form)
+    session['name'] = request.form['name']
+    return redirect("/")
 
 @app.route("/success")
 def success():
+    # print(session['name'])
     return render_template("success.html")
 
-@app.route("/<int:num>")
-def number(num):
-    return render_template("index.html", num=num, name=name, color=color)
+@app.route("/buy/<product_id>")
+def buy(product_id):
+    print(product_id)
+    return redirect("/")
 
-@app.route("/<int:num>/<color>")
-def color(num, color):
-    return render_template("index.html", num=num, name=name, color=color)
+
+
 
 
 if __name__ == "__main__":
